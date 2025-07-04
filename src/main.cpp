@@ -1,18 +1,18 @@
 #include <Arduino.h>
+#include <Display.h>
+#include <TFT_eSPI.h>
 
-// put function declarations here:
-int myFunction(int, int);
+Display display;
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(115200);
+  display.init();
+
+  Serial.println("Setup is complete.");
+  display.drawText(100, 100, "HELLO WORLD!");
+  display.drawPixel(200, 200, TFT_RED);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
 }
