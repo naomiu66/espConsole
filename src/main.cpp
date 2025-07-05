@@ -1,18 +1,32 @@
 #include <Arduino.h>
 #include <Display.h>
-#include <TFT_eSPI.h>
+#include <InputManager.h>
+#include <ButtonEvent.h>
 
 Display display;
+InputManager inputManager;
 
-void setup() {
-  Serial.begin(115200);
+void setup()
+{
+  Serial.begin(9600);
+
   display.init();
+  inputManager.init();
 
-  Serial.println("Setup is complete.");
-  display.drawText(100, 100, "HELLO WORLD!");
-  display.drawPixel(200, 200, TFT_RED);
+  Serial.println("Setup complete");
+
+  display.drawText(200, 200, "Hello world!");
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop()
+{
+  inputManager.update();
+
+  if(inputManager.hasEvent())
+  {
+    ButtonEvent event = inputManager.getEvent();
+
+    Serial.println("Input has event: ");
+    Serial.println(static_cast<int>(event.buttonId));
+  }
 }

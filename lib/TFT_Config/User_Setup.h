@@ -1,10 +1,10 @@
 #define ILI9488_DRIVER
 
-#define TFT_CS   0     // D3 = GPIO0
-#define TFT_DC   15    // D8 = GPIO15
-#define TFT_RST  -1    // если RST не подключён
-#define TFT_MOSI 13    // D7 = GPIO13
-#define TFT_SCLK 14    // D5 = GPIO14
+#define TFT_CS   D3
+#define TFT_DC   D8    
+#define TFT_RST  -1    
+#define TFT_MOSI D7    
+#define TFT_SCLK D5    
 #define TFT_MISO -1 
 
 #define LOAD_GLCD
