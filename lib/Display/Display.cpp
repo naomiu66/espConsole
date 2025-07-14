@@ -30,6 +30,11 @@ void Display::drawPixel(int x, int y, uint16_t color)
     tft.drawPixel(x, y, color);
 }
 
+void Display::drawRect(int x, int y, int width, int height, uint16_t color)
+{
+    tft.drawRect
+}
+
 void Display::update()
 {
     // TODO update

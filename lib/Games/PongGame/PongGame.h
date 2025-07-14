@@ -1,15 +1,16 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef PONG_GAME_H
+#define PONG_GAME_H
 
-#include <Display.h>
+#include <Game.h>
 
-class Game {
+class PongGame : public Game {
 public:
     virtual void init() = 0;
     virtual void update() = 0;
     virtual void render(Display &display) = 0;
     virtual ~Game() = default;
     virtual bool isFinished() = 0;
-};
+private:
+}
 
 #endif

@@ -6,7 +6,6 @@
 #include <MCP23017.h>
 
 class InputManager{
-
 public:
     void init();
     void update();

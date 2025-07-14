@@ -1,41 +1,32 @@
 #ifndef SCREEN_MANAGER_H
 #define SCREEN_MANAGER_H
 
-#include <IScreen.h>
+#include <Screens/Screen.h>
+#include <Display.h>
 
 class ScreenManager
 {
 public:
-    void setScreen(IScreen* screen)
-    {
-        delete currentScreen;
-        currentScreen = screen;
-    }
+    ScreenManager(Display &_display) : display(_display) {}
 
-    void draw(Display& display)
+
+    void setScreen(Screen *_screen)
     {
-        if(currentScreen)
+        delete screen;
+        screen = _screen;
+    }
+    void update()
+    {
+        if(screen)
         {
-            currentScreen->draw(display);
+            screen->update();
+            screen->render(display);
         }
     }
 
-    void update(unsigned long deltaTime)
-    {
-        if(currentScreen)
-        {
-            currentScreen->update(deltaTime);
-        }
-    }
-    
-    void handleInput();    
-    
-    ~ScreenManager()
-    {
-        delete currentScreen;
-    }
 private:
-    IScreen *currentScreen = nullptr;
-}
+    Screen *screen = nullptr;
+    Display &display;
+};
 
 #endif

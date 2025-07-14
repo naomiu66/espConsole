@@ -5,6 +5,7 @@ struct ButtonEvent
 {
     enum ButtonId
     {
+        NONE = -1,
         UP,
         DOWN,
         LEFT,
@@ -12,8 +13,7 @@ struct ButtonEvent
         A,
         B,
         SELECT,
-        MENU,
-        NONE
+        MENU
     };
 
     ButtonId buttonId;
