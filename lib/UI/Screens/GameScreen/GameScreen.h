@@ -10,11 +10,12 @@
 class GameScreen : public Screen {
 public:
     GameScreen(Game *_game, InputManager* _inputManager, SoundManager* _soundManager, Display *_display, ScreenManager *_screenManager) : 
+    game(_game),
     inputManager(_inputManager),
     soundManager(_soundManager),
     display(_display),
-    screenManager(_screenManager),
-    game(_game) {
+    screenManager(_screenManager)
+    {
         game->init();
     }
 

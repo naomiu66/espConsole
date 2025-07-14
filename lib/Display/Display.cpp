@@ -32,7 +32,7 @@ void Display::drawPixel(int x, int y, uint16_t color)
 
 void Display::drawRect(int x, int y, int width, int height, uint16_t color)
 {
-    tft.drawRect
+    tft.drawRect(x, y, width, height, color);
 }
 
 void Display::update()
