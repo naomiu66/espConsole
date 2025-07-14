@@ -5,9 +5,8 @@
 
 class Game {
 public:
-    virtual void init() = 0;
+    virtual void init(Display *display) = 0;
     virtual void update() = 0;
-    virtual void render(Display &display) = 0;
     virtual ~Game() = default;
     virtual bool isFinished() = 0;
 };

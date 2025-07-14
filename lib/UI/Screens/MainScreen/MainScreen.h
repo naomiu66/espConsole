@@ -5,7 +5,13 @@
 #include <SoundManager.h>
 #include <Display.h>
 #include <ScreenManager.h>
-#include <Screens/GameScreen/GameScreen.h>
+#include <Screens/SnakeGameScreen/SnakeGameScreen.h>
+#include <Screens/PongGameScreen/PongGameScreen.h>
+#include <Screens/Screen.h>
+#include <string>
+#include <SnakeGame/SnakeGame.h>
+#include <PongGame/PongGame.h>
+#include <functional>
 
 class MainScreen : public Screen {
 public:
@@ -16,7 +22,7 @@ public:
         screenManager(_screenManager) {}
 
     void update() override;
-    void render(Display &display) override;
+    void render(Display *display) override;
 
 private:
     InputManager *inputManager;
@@ -24,7 +30,15 @@ private:
     Display *display;
     ScreenManager *screenManager;
     int selected = 0;
-    static const int gameCount = 2;
+    bool needsRedraw = true;
+
+    struct MenuItem {
+        const char* name;
+        std::function<Screen*(InputManager*, SoundManager*, Display*, ScreenManager*)> createScreen;
+    };
+
+    static const MenuItem menuItems[];
+    static const int menuItemCount;
 };
 
 #endif

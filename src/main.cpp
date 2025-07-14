@@ -5,37 +5,26 @@
 #include <ScreenManager.h>
 #include <SoundManager.h>
 #include <Screens/MainScreen/MainScreen.h>
+#include <GameEngine.h>
+
 
 Display display;
 InputManager inputManager;
-ScreenManager screenManager(display);
+ScreenManager screenManager(&display);
 SoundManager soundManager;
+GameEngine gameEngine(&screenManager, &inputManager, &soundManager, &display);
+
 
 void setup()
 {
   Serial.begin(9600);
-
-  display.init();
-  inputManager.init();
-
+  gameEngine.init();
   Serial.println("Setup complete");
-
-  screenManager.setScreen(new MainScreen(&inputManager, &soundManager, &display, &screenManager));
 }
+
 
 void loop()
 {
-  inputManager.update();
-  soundManager.update();
-  screenManager.update();
-
-  // if(inputManager.hasEvent())
-  // {
-  //   ButtonEvent event = inputManager.getEvent();
-
-  //   Serial.print("Input has event: ");
-  //   Serial.println(static_cast<int>(event.buttonId));
-
-  //   Serial.println(event.pressed ? "pressed" : "released");
-  // }
+  gameEngine.update();
+  gameEngine.render();
 }

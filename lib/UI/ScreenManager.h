@@ -7,7 +7,7 @@
 class ScreenManager
 {
 public:
-    ScreenManager(Display &_display) : display(_display) {}
+    ScreenManager(Display *_display) : display(_display) {}
 
 
     void setScreen(Screen *_screen)
@@ -20,13 +20,20 @@ public:
         if(screen)
         {
             screen->update();
+        }
+    }
+
+    void render()
+    {
+        if(screen && display)
+        {
             screen->render(display);
         }
     }
 
 private:
     Screen *screen = nullptr;
-    Display &display;
+    Display *display;
 };
 
 #endif

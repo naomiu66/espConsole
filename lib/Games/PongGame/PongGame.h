@@ -5,12 +5,15 @@
 
 class PongGame : public Game {
 public:
-    virtual void init() = 0;
-    virtual void update() = 0;
-    virtual void render(Display &display) = 0;
-    virtual ~Game() = default;
-    virtual bool isFinished() = 0;
+    void init(Display *display) override;
+    void update() override;
+    ~PongGame() = default;
+    PongGame() {}
+    bool isFinished() override;
 private:
-}
+    bool gameOver = false;
+    int player1Score = 0;
+    int player2Score = 0;
+};
 
 #endif

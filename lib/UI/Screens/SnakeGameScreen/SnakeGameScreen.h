@@ -3,20 +3,21 @@
 
 #include <Screens/Screen.h>
 #include <Game.h>
+#include <SnakeGame/SnakeGame.h>
 #include <InputManager.h>
 #include <SoundManager.h>
 #include <ScreenManager.h>
 
-class GameScreen : public Screen {
+class SnakeGameScreen : public Screen {
 public:
-    GameScreen(Game *_game, InputManager* _inputManager, SoundManager* _soundManager, Display *_display, ScreenManager *_screenManager) : 
-    game(_game),
+    SnakeGameScreen(InputManager* _inputManager, SoundManager* _soundManager, Display *_display, ScreenManager *_screenManager) : 
     inputManager(_inputManager),
     soundManager(_soundManager),
     display(_display),
     screenManager(_screenManager)
     {
-        game->init();
+        game = new SnakeGame();
+        game->init(display);
     }
 
     void update() override
@@ -28,9 +29,8 @@ public:
         }
     }
 
-    void render(Display& display) override
+    void render(Display* display) override
     {
-        game->render(display);
     }
      
 private:
