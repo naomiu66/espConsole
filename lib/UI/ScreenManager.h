@@ -3,11 +3,12 @@
 
 #include <Screens/Screen.h>
 #include <Display.h>
+#include <StateManager.h>
 
 class ScreenManager
 {
 public:
-    ScreenManager(Display *_display) : display(_display) {}
+    ScreenManager(Display *_display, StateManager *_stateManager) : display(_display), stateManager(_stateManager) {}
 
 
     void setScreen(Screen *_screen)
@@ -34,6 +35,7 @@ public:
 private:
     Screen *screen = nullptr;
     Display *display;
+    StateManager *stateManager;
 };
 
 #endif

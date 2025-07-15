@@ -5,26 +5,32 @@
 #include <ScreenManager.h>
 #include <SoundManager.h>
 #include <Screens/MainScreen/MainScreen.h>
-#include <GameEngine.h>
+#include <StateManager.h>
 
 
 Display display;
 InputManager inputManager;
-ScreenManager screenManager(&display);
+StateManager stateManager;
+ScreenManager screenManager(&display, &stateManager);
 SoundManager soundManager;
-GameEngine gameEngine(&screenManager, &inputManager, &soundManager, &display);
-
 
 void setup()
 {
   Serial.begin(9600);
-  gameEngine.init();
+  inputManager.init();
+  soundManager.init();
+  screenManager.setScreen(new MainScreen(&inputManager, &soundManager, &display, &screenManager));
+  display.init();
+  delay(1000);
   Serial.println("Setup complete");
 }
 
 
 void loop()
 {
-  gameEngine.update();
-  gameEngine.render();
+  inputManager.update();
+  soundManager.update();
+
+  screenManager.update();
+  screenManager.render();
 }

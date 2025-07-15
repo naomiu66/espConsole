@@ -3,6 +3,7 @@
 
 #include <Display.h>
 
+
 class Game {
 public:
     virtual void init(Display *display) = 0;

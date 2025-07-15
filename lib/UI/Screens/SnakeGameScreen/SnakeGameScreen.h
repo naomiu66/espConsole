@@ -4,6 +4,8 @@
 #include <Screens/Screen.h>
 #include <Game.h>
 #include <SnakeGame/SnakeGame.h>
+#include <ButtonEvent.h>
+#include <Display.h>
 #include <InputManager.h>
 #include <SoundManager.h>
 #include <ScreenManager.h>
@@ -17,28 +19,25 @@ public:
     screenManager(_screenManager)
     {
         game = new SnakeGame();
+        display->clear();
         game->init(display);
     }
 
-    void update() override
-    {
-        game->update();
-        if(game->isFinished())
-        {
-            
-        }
-    }
+    void update() override;
 
-    void render(Display* display) override
-    {
-    }
+    void render(Display* display) override;
      
 private:
-    Game *game;
+    SnakeGame *game;
     InputManager *inputManager;
     SoundManager *soundManager;
     Display *display;
     ScreenManager *screenManager;
+
+    void redrawField(Display *display);
+    void redrawFood(Display *display);
+    void drawSnake(Display *display);
+    void drawScore(Display *display);
 };
 
 #endif

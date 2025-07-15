@@ -2,6 +2,8 @@
 #define PONG_GAME_H
 
 #include <Game.h>
+#include <Display.h>
+
 
 class PongGame : public Game {
 public:

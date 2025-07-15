@@ -35,6 +35,11 @@ void Display::drawRect(int x, int y, int width, int height, uint16_t color)
     tft.drawRect(x, y, width, height, color);
 }
 
+void Display::drawFilledRect(int x, int y, int width, int height, uint16_t color)
+{
+    tft.fillRect(x, y, width, height, color);
+}
+
 void Display::update()
 {
     // TODO update
